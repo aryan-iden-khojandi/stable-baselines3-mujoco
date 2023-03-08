@@ -91,7 +91,7 @@ class DummyVecEnv(VecEnv):
     def _save_obs(self, env_idx: int, obs: VecEnvObs) -> None:
         for key in self.keys:
             if key is None:
-                self.buf_obs[key][env_idx] = obs
+                self.buf_obs[key][env_idx] = obs[0]
             else:
                 self.buf_obs[key][env_idx] = obs[key]
 
