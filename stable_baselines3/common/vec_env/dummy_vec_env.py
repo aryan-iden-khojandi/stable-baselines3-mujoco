@@ -55,12 +55,12 @@ class DummyVecEnv(VecEnv):
             seed = np.random.randint(0, 2**32 - 1)
         seeds = []
         for idx, env in enumerate(self.envs):
-            seeds.append(env.seed(seed + idx))
+            seeds.append(env.reset(seed=seed + idx))
         return seeds
 
-    def reset(self) -> VecEnvObs:
+    def reset(self, seed=None) -> VecEnvObs:
         for env_idx in range(self.num_envs):
-            obs = self.envs[env_idx].reset()
+            obs = self.envs[env_idx].reset(seed=seed)[0]
             self._save_obs(env_idx, obs)
         return self._obs_from_buf()
 

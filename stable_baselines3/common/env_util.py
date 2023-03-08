@@ -81,7 +81,7 @@ def make_vec_env(
             else:
                 env = env_id(**env_kwargs)
             if seed is not None:
-                env.reset(seed = seed + rank)
+                env.reset(seed=seed + rank)
                 env.action_space.seed(seed + rank)
             # Wrap the env in a Monitor wrapper
             # to have additional training information

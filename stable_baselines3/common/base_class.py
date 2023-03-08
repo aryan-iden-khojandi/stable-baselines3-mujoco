@@ -452,7 +452,7 @@ class BaseAlgorithm(ABC):
                 self._last_original_obs = self._vec_normalize_env.get_original_obs()
 
         if eval_env is not None and self.seed is not None:
-            eval_env.seed(self.seed)
+            eval_env.reset(seed=self.seed)
 
         eval_env = self._get_eval_env(eval_env)
 
@@ -597,9 +597,9 @@ class BaseAlgorithm(ABC):
         set_random_seed(seed, using_cuda=self.device.type == th.device("cuda").type)
         self.action_space.seed(seed)
         if self.env is not None:
-            self.env.seed(seed)
+            self.env.reset(seed=seed)
         if self.eval_env is not None:
-            self.eval_env.seed(seed)
+            self.eval_env.reset(seed=seed)
 
     def set_parameters(
         self,
